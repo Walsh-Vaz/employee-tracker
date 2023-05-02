@@ -63,7 +63,7 @@ var userPrompt = () => {
             {
                 type: "input",
                 name: "departmentId",
-                messag: "please enter the id"
+                message: "please enter the id"
             }]).then((result) => {
                 var dpName = result.departmentName;
                 var dpId = result.departmentId;
@@ -71,6 +71,42 @@ var userPrompt = () => {
                 
                 db.query("INSERT INTO department (id, names) VALUES (?, ?)", values, (err, results) => {
                     console.log("added a department");
+                    console.log(results);
+                    userPrompt();
+                });
+
+            })
+        }
+        
+        else if (choice === "add a role") {
+            inquirer.prompt([{
+                type: "input",
+                name: "Title",
+                message: "please add a Title"
+            },
+            {
+                type: "input",
+                name: "departmentId",
+                message: "please enter the id"
+            },
+            {
+                type: "input",
+                name: "salary",
+                message: "please enter the salary"
+            },
+            {
+                type: "input",
+                name: "roleId",
+                message: "please enter the role id"
+            }]).then((result) => {
+                var roleTitle = result.Title;
+                var roleSalary = result.salary;
+                var id = result.roleId;
+                var dpId = result.departmentId;
+                var values = [id, roleTitle, roleSalary, dpId];
+                
+                db.query("INSERT INTO roles (id, title, salary, department_id) VALUES (?, ?, ?, ?)", values, (err, results) => {
+                    console.log("added a role");
                     console.log(results);
                     userPrompt();
                 });
