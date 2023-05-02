@@ -113,6 +113,47 @@ var userPrompt = () => {
 
             })
         }     
+
+        else if (choice === "add an employee") {
+            inquirer.prompt([{
+                type: "input",
+                name: "firstName",
+                message: "please add a firstName"
+            },
+            {
+                type: "input",
+                name: "lastName",
+                message: "please enter the lastName"
+            },
+            {
+                type: "input",
+                name: "employeeId",
+                message: "please enter the employee id"
+            },
+            {
+                type: "input",
+                name: "managerId",
+                message: "please enter the Manager id"
+            },
+            {
+                type: "input",
+                name: "roleId",
+                message: "please enter the role id"
+            }]).then((result) => {
+                var first = result.firstName;
+                var last = result.lastName;
+                var roleId = result.roleId;
+                var mId = result.managerId;
+                var id = result.employeeId;
+                var values = [id, first, last, roleId, mId];
+                
+                db.query("INSERT INTO employee (id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?)", values, (err, results) => {
+                    console.log("added a employee");
+                    console.log(results);
+                    userPrompt();
+                });
+            })
+        } 
     });
 };
 
