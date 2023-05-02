@@ -38,7 +38,7 @@ var userPrompt = () => {
 
         else if (choice === "View all roles") {
             db.query("SELECT roles.id, roles.title, department.names, roles.salary FROM roles JOIN department ON roles.department_id = department.id", (err, results) => {
-                console.log("displaying all roles");
+                //console.log("displaying all roles");
                 console.log(results);
                 userPrompt();
             });
@@ -48,7 +48,7 @@ var userPrompt = () => {
         else if (choice === "View all employes"){
             console.log("displaying all employyes");
             db.query("SELECT employee.id, employee.first_name, employee.last_name, roles.title, roles.salary, department.names FROM employee JOIN roles ON employee.role_id = roles.id JOIN department ON roles.department_id = department.id", (err, results) => {
-                console.log("displaying all roles");
+                //console.log("displaying all roles");
                 console.log(results);
                 userPrompt();
             });
