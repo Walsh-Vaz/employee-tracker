@@ -11,4 +11,4 @@ side note - when adding an employee department and/or roles you will be prompted
 
 demo link: - https://drive.google.com/file/d/10DRGzYPU82XdktfmpPAixucS7AL4lBB5/view
 
-github repo link: - https://github.com/Walsh-Vaz/SVG-logo.git
+github repo link: - https://github.com/Walsh-Vaz/employee-tracker.git
