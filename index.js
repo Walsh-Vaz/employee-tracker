@@ -30,7 +30,7 @@ var userPrompt = () => {
 
         if (choice === "View all departments") {
             db.query("SELECT * FROM department", (err, results) => {
-                console.log("displaying all departments");
+                //console.log("displaying all departments");
                 console.log(results);
                 userPrompt();
             });
@@ -53,7 +53,30 @@ var userPrompt = () => {
                 userPrompt();
             });
         }
-        
+
+        else if (choice === "add a department") {
+            inquirer.prompt([{
+                type: "input",
+                name: "departmentName",
+                message: "please add a department name"
+            },
+            {
+                type: "input",
+                name: "departmentId",
+                messag: "please enter the id"
+            }]).then((result) => {
+                var dpName = result.departmentName;
+                var dpId = result.departmentId;
+                var values = [dpId, dpName];
+                
+                db.query("INSERT INTO department (id, names) VALUES (?, ?)", values, (err, results) => {
+                    console.log("added a department");
+                    console.log(results);
+                    userPrompt();
+                });
+
+            })
+        }     
     });
 };
 
